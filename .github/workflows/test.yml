@@ -1,5 +1,5 @@
 name: test
-on: [push, merge_request]
+on: [push, merge_requests]
 
 jobs:
   hello_world_job:
