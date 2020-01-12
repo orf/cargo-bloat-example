@@ -26,4 +26,4 @@ jobs:
       - name: Hello world action step
         uses: orf/cargo-bloat-action@master
         with:
-          milliseconds: 10
+          token: ${{ secrets.GITHUB_TOKEN }}
