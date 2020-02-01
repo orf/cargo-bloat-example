@@ -1,17 +1,15 @@
-name: test
-on: # rebuild any PRs and main branch changes
-  pull_request:
-  push:
-    branches:
-      - master
-      - 'releases/*'
+on: [push]
+
+name: CI
 
 jobs:
-  cargo_bloat:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
+  build_and_test:
+    name: Rust project
     runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@master
       - name: Install Rust
@@ -19,7 +17,8 @@ jobs:
         with:
           toolchain: stable
           override: true
-      - name: Run cargo bloat
-        uses: orf/cargo-bloat-action@master
+
+      - name: Test
+        uses: actions-rs/cargo@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          command: test
