@@ -1,5 +1,10 @@
 name: test
-on: [push]
+on: # rebuild any PRs and main branch changes
+  pull_request:
+  push:
+    branches:
+      - master
+      - 'releases/*'
 
 jobs:
   cargo_bloat:
