@@ -9,3 +9,4 @@ edition = "2018"
 [dependencies]
 chrono-humanize = "0.0.11"
 chrono = "0.4.11"
+ureq = { version = "0.12.1", default-features = false }
